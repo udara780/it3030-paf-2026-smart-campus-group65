@@ -63,7 +63,7 @@ export default function Login() {
           <div className="absolute top-20 left-20 w-72 h-72 rounded-full bg-white/20 blur-3xl" />
           <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-white/10 blur-3xl" />
         </div>
-        <div className="relative z-10 flex flex-col justify-center px-12 xl:px-16">
+        <div className="relative z-10 flex flex-col justify-center px-16">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
               <span className="text-white text-2xl font-bold">C</span>
@@ -73,12 +73,12 @@ export default function Login() {
           <p className="text-xl text-white/80 mb-12 leading-relaxed">
             Your all-in-one campus facilities management platform. Book spaces, manage assets, and handle maintenance — effortlessly.
           </p>
-          <div className="grid grid-cols-2 gap-5">
-            {features.map(({ icon: IconComponent, title, desc }) => (
-              <div key={title} className="p-5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/15 transition-all">
-                <IconComponent className="text-white mb-3" size={28} />
+          <div className="grid grid-cols-2 gap-4">
+            {features.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/15 transition-all">
+                <Icon className="text-white mb-2" size={28} />
                 <h3 className="text-white font-semibold">{title}</h3>
-                <p className="text-white/60 text-sm mt-1.5">{desc}</p>
+                <p className="text-white/60 text-sm mt-1">{desc}</p>
               </div>
             ))}
           </div>
@@ -95,7 +95,7 @@ export default function Login() {
             <h1 className="text-3xl font-bold bg-linear-to-r from-primary-light to-secondary bg-clip-text text-transparent">CampsHub</h1>
           </div>
 
-          <div className="bg-dark-card border border-dark-border rounded-2xl p-8 xl:p-10 shadow-2xl">
+          <div className="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-2xl">
             <h2 className="text-2xl font-bold text-white mb-2">Welcome back</h2>
             <p className="text-dark-text mb-8">Sign in to manage your campus facilities</p>
 
@@ -107,7 +107,7 @@ export default function Login() {
             </div>
 
             {/* Demo login buttons for testing without Google */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               {['USER', 'ADMIN', 'TECHNICIAN'].map((role) => (
                 <button
                   key={role}
@@ -140,7 +140,7 @@ export default function Login() {
             </div>
           </div>
 
-          <p className="text-center text-dark-text text-xs mt-8">
+          <p className="text-center text-dark-text text-xs mt-6">
             By signing in, you agree to CampsHub's Terms of Service
           </p>
         </div>

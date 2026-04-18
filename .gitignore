@@ -1,0 +1,46 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build
+target/
+dist/
+build/
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Maven
+.m2/
+*.jar
+*.war
+*.ear
+
+# Node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+.thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+.tmp/
+tmp/

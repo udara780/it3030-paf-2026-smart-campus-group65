@@ -1,5 +1,20 @@
 package com.campshub.demo.service;
 
+import com.campshub.demo.dto.TicketRequest;
+import com.campshub.demo.exception.InvalidOperationException;
+import com.campshub.demo.exception.ResourceNotFoundException;
+import com.campshub.demo.model.*;
+import com.campshub.demo.model.enums.NotificationType;
+import com.campshub.demo.model.enums.TicketStatus;
+import com.campshub.demo.model.enums.UserRole;
+import com.campshub.demo.repository.FacilityRepository;
+import com.campshub.demo.repository.TicketRepository;
+import com.campshub.demo.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,29 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.campshub.demo.dto.TicketRequest;
-import com.campshub.demo.exception.InvalidOperationException;
-import com.campshub.demo.exception.ResourceNotFoundException;
-import com.campshub.demo.model.Comment;
-import com.campshub.demo.model.Ticket;
-import com.campshub.demo.model.User;
-import com.campshub.demo.model.enums.NotificationType;
-import com.campshub.demo.model.enums.TicketStatus;
-import com.campshub.demo.model.enums.UserRole;
-import com.campshub.demo.repository.TicketRepository;
-import com.campshub.demo.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
-
 @Service
 @RequiredArgsConstructor
 public class TicketService {
 
     private final TicketRepository ticketRepository;
+    private final FacilityRepository facilityRepository;
     private final UserRepository userRepository;
     private final NotificationService notificationService;
 
@@ -40,10 +38,12 @@ public class TicketService {
     private String uploadDir;
 
     public Ticket createTicket(TicketRequest request, MultipartFile[] images, User reporter) {
+        Facility facility = facilityRepository.findById(request.getFacilityId())
+                .orElseThrow(() -> new ResourceNotFoundException("Facility not found"));
+
         Ticket ticket = new Ticket();
         ticket.setFacilityId(request.getFacilityId());
-        // In this service, facility info is optional
-        ticket.setFacilityName(request.getFacilityId() != null ? request.getFacilityId() : "General");
+        ticket.setFacilityName(facility.getName());
         ticket.setReporterId(reporter.getId());
         ticket.setReporterName(reporter.getName());
         ticket.setTitle(request.getTitle());

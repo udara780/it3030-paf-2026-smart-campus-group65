@@ -1,6 +1,23 @@
 import api from './api';
 
-// uadara: Only Tickets (3) and Notifications (4) CRUDs
+export const facilityService = {
+  getAll: (params) => api.get('/facilities', { params }),
+  getById: (id) => api.get(`/facilities/${id}`),
+  create: (data) => api.post('/facilities', data),
+  update: (id, data) => api.put(`/facilities/${id}`, data),
+  delete: (id) => api.delete(`/facilities/${id}`),
+};
+
+export const bookingService = {
+  getAll: (params) => api.get('/bookings', { params }),
+  getMyBookings: () => api.get('/bookings/my'),
+  getById: (id) => api.get(`/bookings/${id}`),
+  create: (data) => api.post('/bookings', data),
+  approve: (id, data) => api.put(`/bookings/${id}/approve`, data),
+  reject: (id, data) => api.put(`/bookings/${id}/reject`, data),
+  cancel: (id) => api.put(`/bookings/${id}/cancel`),
+};
+
 export const ticketService = {
   getAll: (params) => api.get('/tickets', { params }),
   getMyTickets: () => api.get('/tickets/my'),

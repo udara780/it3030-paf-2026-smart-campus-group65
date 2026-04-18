@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Core Colors */
-  --color-primary: #3b82f6;
-  --color-primary-light: #60a5fa;
-  --color-primary-dark: #1e40af;
-  --color-secondary: #06b6d4;
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-secondary: #0ea5e9;
   --color-accent: #f59e0b;
   --color-success: #10b981;
   --color-danger: #ef4444;
@@ -15,27 +14,7 @@
   --color-dark-border: #334155;
   --color-dark-text: #94a3b8;
   --color-dark-text-light: #cbd5e1;
-
-  /* Typography */
-  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-display: 'Inter', system-ui, sans-serif;
-
-  /* Spacing Scale - 4px base */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-
-  /* Component Spacing */
-  --card-padding: 1.5rem;
-  --section-gap: 1.5rem;
-  --form-gap: 1rem;
-  --label-gap: 0.5rem;
+  --font-family-sans: 'Inter', sans-serif;
 }
 
 * {
@@ -44,320 +23,87 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
-  height: 100%;
-  width: 100%;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #0f172a;
   color: #e2e8f0;
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Card styles - Consistent 24px (p-6) padding */
-.card {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 1.5rem;
-}
-
-.card:hover {
-  border-color: #475569;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.card-interactive {
-  cursor: pointer;
-}
-
-.card-interactive:hover {
-  border-color: #3b82f6;
-  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
-  transform: translateY(-2px);
-}
-
-/* Card size variants */
-.card-compact {
-  padding: 1rem;
-}
-
-.card-comfortable {
-  padding: 2rem;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
 /* Glassmorphism effects */
 .glass {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.4);
-}
-
-.glass-strong {
-  background: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(51, 65, 85, 0.5);
 }
 
-/* Subtle shadows */
-.shadow-sm {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+.glass-strong {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.6);
 }
 
-.shadow-focus {
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 0 0 1px rgba(59, 130, 246, 0.5);
+/* Enhanced shadows */
+.shadow-glow-primary {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-glow-secondary {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-glow-success {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-glow-danger {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
-
-@keyframes pulse-subtle {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
 }
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-
-  100% {
-    background-position: 1000px 0;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.4s ease-out;
-}
-
-.animate-slide-in {
-  animation: slideInLeft 0.3s ease-out;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.3s ease-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.3s ease-out;
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s ease-in-out infinite;
-}
-
-/* Stagger animations for lists */
-.stagger-item:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.stagger-item:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.stagger-item:nth-child(3) {
-  animation-delay: 0.15s;
-}
-
-.stagger-item:nth-child(4) {
-  animation-delay: 0.2s;
-}
-
-.stagger-item:nth-child(5) {
-  animation-delay: 0.25s;
-}
-
-/* Focus & interaction states */
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-}
-
-/* Typography improvements - Consistent spacing */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.25;
-  letter-spacing: -0.025em;
-  margin-bottom: 0.75rem;
-}
-
-h1 { font-size: 1.875rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-h4 { font-size: 1.125rem; }
-
-p {
-  line-height: 1.75;
-  margin-bottom: 1rem;
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-/* List spacing */
-ul,
-ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-li {
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
-}
-
-li:last-child {
-  margin-bottom: 0;
-}
-
-button {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Improved form spacing */
-label {
-  display: block;
-  margin-bottom: 0.375rem;
-}
-
-/* Better table spacing */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td,
-th {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #334155;
-}
-
-th {
-  font-weight: 600;
-  background-color: #1e293b;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+.animate-fade-in { animation: fadeIn 0.4s ease-out; }
+.animate-slide-in { animation: slideIn 0.3s ease-out; }
+.animate-slide-in-right { animation: slideInRight 0.3s ease-out; }
+.animate-scale-in { animation: scaleIn 0.3s ease-out; }
+.animate-pulse-glow { animation: pulse-glow 2s infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
 
 /* Hover effects */
 .hover-lift {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .hover-lift:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
@@ -368,7 +114,6 @@ th {
   position: relative;
   overflow: hidden;
 }
-
 .btn-shine::after {
   content: '';
   position: absolute;
@@ -376,137 +121,18 @@ th {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transform: rotate(45deg);
   transition: all 0.5s;
   opacity: 0;
 }
-
 .btn-shine:hover::after {
   opacity: 1;
   left: 100%;
   transition: all 0.5s;
-}
-
-/* Page Container Wrapper - Ensures no content overflow */
-.page-container {
-  width: 100%;
-  padding: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .page-container {
-    padding: 1.5rem 2rem;
-  }
-}
-
-/* Section wrapper with consistent spacing */
-.section {
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Content wrapper for inner elements */
-.content-wrapper {
-  padding: 1rem 1.25rem;
-}
-
-/* Grid spacing utilities to prevent overlap */
-.grid-section {
-  gap: 1.5rem;
-  padding: 0.5rem;
-}
-
-/* Card inner content padding */
-.card-content {
-  padding: 1rem 1.25rem;
-}
-
-/* Form section spacing */
-.form-section {
-  padding: 1rem 1.5rem;
-}
-
-/* List item spacing - prevents overlap */
-.list-item {
-  padding: 0.875rem 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.list-item:last-child {
-  margin-bottom: 0;
-}
-
-/* Header section with proper spacing */
-.page-header {
-  padding: 1rem 0 1.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Stats cards grid */
-.stats-grid {
-  gap: 1rem;
-  padding: 0.5rem 0;
-}
-
-/* Modal content padding */
-.modal-content {
-  padding: 1.5rem;
-}
-
-/* Form field spacing */
-.form-field {
-  margin-bottom: 1.25rem;
-}
-
-.form-field:last-child {
-  margin-bottom: 0;
-}
-
-/* Dropdown/Menu spacing */
-.dropdown-menu {
-  padding: 0.5rem;
-}
-
-.dropdown-item {
-  padding: 0.625rem 1rem;
-  margin: 0.25rem 0;
-}
-
-/* Table spacing */
-.table-container {
-  padding: 1rem;
-}
-
-.table-row {
-  padding: 0.875rem 1rem;
-}
-
-/* Tabs container */
-.tabs-container {
-  padding: 0.75rem;
-  gap: 0.5rem;
-}
-
-.tab-item {
-  padding: 0.625rem 1rem;
-}
-
-/* Notification item */
-.notification-item {
-  padding: 0.875rem 1rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Search/Filter bar */
-.search-bar {
-  padding: 1.25rem;
-}
-
-/* Empty state wrapper */
-.empty-state {
-  padding: 2rem;
 }

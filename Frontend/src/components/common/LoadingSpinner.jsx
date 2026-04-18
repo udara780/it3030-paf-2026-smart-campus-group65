@@ -6,17 +6,13 @@ export default function LoadingSpinner({ message = 'Loading...', size = 'default
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-12">
-      {/* Spinner */}
+    <div className="flex flex-col items-center justify-center py-16">
       <div className={`relative ${sizes[size]}`}>
-        <div className={`absolute inset-0 border-2 border-dark-border/20 rounded-full`} />
-        <div className={`absolute inset-0 border-2 border-transparent border-t-primary rounded-full animate-spin`} />
+        <div className={`absolute inset-0 ${sizes[size]} border-2 border-dark-border/30 rounded-full`} />
+        <div className={`absolute inset-0 ${sizes[size]} border-2 border-transparent border-t-primary rounded-full animate-spin`} />
+        <div className={`absolute inset-2 ${sizes[size]} border-2 border-transparent border-t-secondary rounded-full animate-spin`} style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
       </div>
-
-      {/* Message */}
-      {message && (
-        <p className="mt-4 text-sm text-dark-text animate-pulse-subtle">{message}</p>
-      )}
+      <p className="mt-4 text-sm text-dark-text-light animate-pulse">{message}</p>
     </div>
   );
 }

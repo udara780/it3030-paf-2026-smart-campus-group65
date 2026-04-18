@@ -12,8 +12,8 @@ export default function Layout() {
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
-        <main className="flex-1 overflow-y-auto bg-linear-to-br from-dark via-dark to-dark-card/20 p-4 lg:p-6" key={location.pathname}>
-          <div className="animate-fade-in max-w-full mx-auto page-container">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6" key={location.pathname}>
+          <div className="animate-fade-in">
             <Outlet />
           </div>
         </main>
