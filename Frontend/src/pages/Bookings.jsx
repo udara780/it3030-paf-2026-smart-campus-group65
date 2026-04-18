@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { bookingService, facilityService } from '../services/dataService';
-import StatusBadge from '../components/common/StatusBadge';
 import Modal from '../components/common/Modal';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import EmptyState from '../components/common/EmptyState';
 import { HiPlus, HiCheck, HiX, HiBan, HiCalendar, HiClock, HiChat } from 'react-icons/hi';
 import toast from 'react-hot-toast';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { bookingService, facilityService } from '../services/dataService';
+import StatusBadge from '../components/common/StatusBadge';
+
 
 export default function Bookings() {
   const { user, isAdmin } = useAuth();

@@ -27,11 +27,12 @@ export default function RoutesList() {
 
       {/* Protected routes with Layout */}
       <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/facilities" element={<Facilities />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/tickets" element={<Tickets />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/facilities" element={<Facilities />} />
+
       </Route>
 
       {/* Catch-all */}

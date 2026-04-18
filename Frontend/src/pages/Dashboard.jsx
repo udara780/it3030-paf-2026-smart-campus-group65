@@ -75,7 +75,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 p-4">
         {statCards.map(({ label, value, icon: Icon, color, link }) => (
           <Link to={link} key={label} className="group bg-dark-card border border-dark-border rounded-xl p-5 hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 hover-lift">
             <div className="flex items-center justify-between mb-3">
@@ -90,7 +90,7 @@ export default function Dashboard() {
       </div>
 
       {/* Recent activity grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
         {/* Recent Bookings */}
         <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
           <div className="flex items-center justify-between p-4 border-b border-dark-border">
