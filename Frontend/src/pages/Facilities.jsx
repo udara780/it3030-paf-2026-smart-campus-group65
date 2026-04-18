@@ -98,38 +98,38 @@ export default function Facilities() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="p-4 m-2 space-y-6 animate-fade-in">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white">Facilities & Assets</h2>
-          <p className="text-dark-text mt-1">Browse and manage campus facilities</p>
+          <h2 className="text-3xl font-bold text-white mb-2">Facilities & Assets</h2>
+          <p className="text-dark-text text-base">Browse and manage campus facilities</p>
         </div>
         {isAdmin() && (
-          <button onClick={openCreateModal} className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-lg font-medium text-sm transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40">
-            <HiPlus size={18} /> Add Facility
+          <button onClick={openCreateModal} className="flex items-center gap-2 px-5 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-medium text-base transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40">
+            <HiPlus size={20} /> Add Facility
           </button>
         )}
       </div>
 
       {/* Search & Filters */}
-      <div className="bg-dark-card border border-dark-border rounded-xl p-4">
-        <div className="flex flex-col sm:flex-row gap-3">
+      <div className="bg-dark-card border border-dark-border rounded-xl p-6">
+        <div className="flex flex-col sm:flex-row gap-4">
           <form onSubmit={handleSearch} className="flex-1 relative">
-            <HiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-dark-text" size={18} />
+            <HiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-dark-text" size={20} />
             <input
               type="text" placeholder="Search facilities..."
               value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white placeholder-dark-text focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+              className="w-full pl-12 pr-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white placeholder-dark-text focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
             />
           </form>
           <select value={filterType} onChange={(e) => setFilterType(e.target.value)}
-            className="px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
+            className="px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
             <option value="">All Types</option>
             {TYPES.filter(Boolean).map(t => <option key={t} value={t}>{t}</option>)}
           </select>
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
+            className="px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
             <option value="">All Statuses</option>
             {STATUSES.filter(Boolean).map(s => <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>)}
           </select>
@@ -137,16 +137,16 @@ export default function Facilities() {
       </div>
 
       {/* Facility Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {facilities.length === 0 ? (
           <div className="col-span-full">
-            <EmptyState 
+            <EmptyState
               icon="facilities"
               title="No facilities found"
               description="Try adjusting your search or filters, or add a new facility."
               action={isAdmin() ? (
-                <button onClick={openCreateModal} className="mt-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-medium transition-all flex items-center gap-2 mx-auto">
-                  <HiPlus size={16} /> Add Facility
+                <button onClick={openCreateModal} className="mt-4 px-5 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg text-base font-medium transition-all flex items-center gap-2 mx-auto">
+                  <HiPlus size={18} /> Add Facility
                 </button>
               ) : null}
             />
@@ -154,31 +154,31 @@ export default function Facilities() {
         ) : (
           facilities.map((f) => (
             <div key={f.id} className="bg-dark-card border border-dark-border rounded-xl overflow-hidden hover:border-primary/30 transition-all group">
-              <div className="p-5">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{typeIcons[f.type] || '📦'}</span>
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="flex items-center gap-4">
+                    <span className="text-3xl">{typeIcons[f.type] || '📦'}</span>
                     <div>
-                      <h3 className="font-semibold text-white group-hover:text-primary-light transition-colors">{f.name}</h3>
-                      <p className="text-xs text-dark-text mt-0.5">{f.type}</p>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-primary-light transition-colors">{f.name}</h3>
+                      <p className="text-sm text-dark-text mt-1">{f.type}</p>
                     </div>
                   </div>
                   <StatusBadge status={f.status} />
                 </div>
-                {f.description && <p className="text-sm text-dark-text-light mb-3 line-clamp-2">{f.description}</p>}
-                <div className="flex items-center gap-4 text-sm text-dark-text">
-                  <span className="flex items-center gap-1"><HiLocationMarker size={14} /> {f.location}</span>
-                  <span className="flex items-center gap-1"><HiUsers size={14} /> {f.capacity}</span>
+                {f.description && <p className="text-base text-dark-text-light mb-5 line-clamp-2">{f.description}</p>}
+                <div className="flex items-center gap-5 text-base text-dark-text">
+                  <span className="flex items-center gap-2"><HiLocationMarker size={16} /> {f.location}</span>
+                  <span className="flex items-center gap-2"><HiUsers size={16} /> {f.capacity}</span>
                 </div>
               </div>
               {isAdmin() && (
                 <div className="flex border-t border-dark-border">
-                  <button onClick={() => openEditModal(f)} className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm text-dark-text hover:text-primary hover:bg-primary/5 transition-colors">
-                    <HiPencil size={14} /> Edit
+                  <button onClick={() => openEditModal(f)} className="flex-1 flex items-center justify-center gap-2 py-4 text-base text-dark-text hover:text-primary hover:bg-primary/5 transition-colors">
+                    <HiPencil size={16} /> Edit
                   </button>
                   <div className="w-px bg-dark-border" />
-                  <button onClick={() => handleDelete(f.id)} className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm text-dark-text hover:text-danger hover:bg-danger/5 transition-colors">
-                    <HiTrash size={14} /> Delete
+                  <button onClick={() => handleDelete(f.id)} className="flex-1 flex items-center justify-center gap-2 py-4 text-base text-dark-text hover:text-danger hover:bg-danger/5 transition-colors">
+                    <HiTrash size={16} /> Delete
                   </button>
                 </div>
               )}
@@ -189,51 +189,51 @@ export default function Facilities() {
 
       {/* Create/Edit Modal */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editing ? 'Edit Facility' : 'Add New Facility'}>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-dark-text-light mb-1.5">Name</label>
+            <label className="block text-base font-medium text-dark-text-light mb-2">Name</label>
             <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
-              className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
+              className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-dark-text-light mb-1.5">Type</label>
+              <label className="block text-base font-medium text-dark-text-light mb-2">Type</label>
               <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })}
-                className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
+                className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
                 <option value="ROOM">Room</option>
                 <option value="LAB">Lab</option>
                 <option value="EQUIPMENT">Equipment</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-dark-text-light mb-1.5">Capacity</label>
+              <label className="block text-base font-medium text-dark-text-light mb-2">Capacity</label>
               <input type="number" min="1" required value={form.capacity} onChange={e => setForm({ ...form, capacity: parseInt(e.target.value) })}
-                className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
+                className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-dark-text-light mb-1.5">Location</label>
+            <label className="block text-base font-medium text-dark-text-light mb-2">Location</label>
             <input type="text" required value={form.location} onChange={e => setForm({ ...form, location: e.target.value })}
-              className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
+              className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-dark-text-light mb-1.5">Description</label>
-            <textarea rows="3" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
-              className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
+            <label className="block text-base font-medium text-dark-text-light mb-2">Description</label>
+            <textarea rows="4" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
+              className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-dark-text-light mb-1.5">Status</label>
+            <label className="block text-base font-medium text-dark-text-light mb-2">Status</label>
             <select value={form.status} onChange={e => setForm({ ...form, status: e.target.value })}
-              className="w-full px-3 py-2.5 bg-dark border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
+              className="w-full px-4 py-3 bg-dark border border-dark-border rounded-lg text-base text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
               <option value="ACTIVE">Active</option>
               <option value="OUT_OF_SERVICE">Out of Service</option>
             </select>
           </div>
-          <div className="flex gap-3 pt-2">
-            <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 border border-dark-border rounded-lg text-sm font-medium text-dark-text-light hover:bg-dark-border/40 transition-colors">
+          <div className="flex gap-4 pt-3">
+            <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-3 border border-dark-border rounded-lg text-base font-medium text-dark-text-light hover:bg-dark-border/40 transition-colors">
               Cancel
             </button>
-            <button type="submit" className="flex-1 py-2.5 bg-primary hover:bg-primary-dark rounded-lg text-sm font-medium text-white transition-colors shadow-lg shadow-primary/20">
+            <button type="submit" className="flex-1 py-3 bg-primary hover:bg-primary-dark rounded-lg text-base font-medium text-white transition-colors shadow-lg shadow-primary/20">
               {editing ? 'Update' : 'Create'}
             </button>
           </div>
@@ -242,3 +242,5 @@ export default function Facilities() {
     </div>
   );
 }
+
+

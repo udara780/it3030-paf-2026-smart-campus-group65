@@ -4,7 +4,7 @@ import { HiExclamationTriangle } from "react-icons/hi2";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-dark flex items-center justify-center p-4">
+    <div className="min-h-screen bg-dark flex items-center justify-center p-4 m-2">
       <div className="text-center max-w-md">
         <div className="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 animate-pulse">
           <HiExclamationTriangle className="text-primary" size={48} />
@@ -25,3 +25,4 @@ export default function NotFound() {
     </div>
   );
 }
+

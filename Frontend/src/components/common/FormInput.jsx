@@ -15,7 +15,7 @@ const FormInput = forwardRef(({
     };
 
     return (
-        <div className="space-y-2">
+        <div className="p-4 m-2 space-y-2">
             {label && (
                 <label className="block text-sm font-medium text-dark-text-light leading-tight">
                     {label}
@@ -48,3 +48,4 @@ const FormInput = forwardRef(({
 FormInput.displayName = 'FormInput';
 
 export default FormInput;
+

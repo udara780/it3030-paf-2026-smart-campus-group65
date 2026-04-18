@@ -9,7 +9,7 @@ const FormTextarea = forwardRef(({
     ...props
 }, ref) => {
     return (
-        <div className="space-y-2">
+        <div className="p-4 m-2 space-y-2">
             {label && (
                 <label className="block text-sm font-medium text-dark-text-light leading-tight">
                     {label}
@@ -43,3 +43,4 @@ const FormTextarea = forwardRef(({
 FormTextarea.displayName = 'FormTextarea';
 
 export default FormTextarea;
+

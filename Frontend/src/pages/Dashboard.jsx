@@ -67,96 +67,126 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      {/* Greeting */}
-      <div>
-        <h2 className="text-2xl font-bold text-white">Welcome back, {user?.name?.split(' ')[0]} 👋</h2>
-        <p className="text-dark-text mt-1">Here's what's happening with your campus today</p>
+    <div className="p-4 m-2 space-y-8 animate-fade-in">
+      {/* Header Section */}
+      <div className="pb-2">
+        <h1 className="text-3xl font-bold text-white mb-2 leading-tight">Welcome back, {user?.name?.split(' ')[0]}</h1>
+        <p className="text-dark-text text-base leading-relaxed">Quick overview of your campus operations</p>
       </div>
 
-      {/* Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 p-4">
-        {statCards.map(({ label, value, icon: Icon, color, link }) => (
-          <Link to={link} key={label} className="group bg-dark-card border border-dark-border rounded-xl p-5 hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 hover-lift">
-            <div className="flex items-center justify-between mb-3">
-              <div className={`w-10 h-10 rounded-lg bg-linear-to-br ${color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                <Icon className="text-white" size={20} />
+      {/* Stat Cards - Enhanced Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        {statCards.map(({ label, value, icon: IconComponent, color, link }) => (
+          <Link to={link} key={label} className="stagger-item animate-slide-up group card card-interactive relative overflow-hidden">
+            {/* Accent bar */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+            <div className="flex items-start justify-between mb-6">
+              <div className={`w-12 h-12 rounded-lg bg-linear-to-br ${color} flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                <IconComponent className="text-white" size={22} />
               </div>
             </div>
-            <p className="text-2xl font-bold text-white">{value}</p>
-            <p className="text-sm text-dark-text mt-1">{label}</p>
+
+            <div className="space-y-2">
+              <p className="text-3xl font-bold text-white leading-tight">{value}</p>
+              <p className="text-sm text-dark-text group-hover:text-dark-text-light transition-colors leading-relaxed">{label}</p>
+            </div>
+
+            {/* Subtle indicator */}
+            <div className="absolute bottom-0 right-0 opacity-5 text-6xl font-bold text-primary">
+              {label.split(' ')[0][0]}
+            </div>
           </Link>
         ))}
       </div>
 
-      {/* Recent activity grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
-        {/* Recent Bookings */}
-        <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b border-dark-border">
-            <h3 className="font-semibold text-white">Recent Bookings</h3>
-            <Link to="/bookings" className="text-sm text-primary hover:text-primary-light transition-colors">View all →</Link>
+      {/* Recent Activity - Two Column Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Bookings Card */}
+        <div className="card animate-slide-up overflow-hidden">
+          <div className="flex items-center justify-between pb-4 border-b border-dark-border mb-4">
+            <div>
+              <h3 className="text-lg font-semibold text-white leading-tight">Recent Bookings</h3>
+              <p className="text-sm text-dark-text mt-1 leading-relaxed">Latest facility reservations</p>
+            </div>
+            <Link to="/bookings" className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-light transition-colors font-medium whitespace-nowrap">
+              View all
+              <span>→</span>
+            </Link>
           </div>
-          <div className="divide-y divide-dark-border/50">
-            {recentBookings.length === 0 ? (
-              <EmptyState 
+
+          {recentBookings.length === 0 ? (
+            <div className="py-8">
+              <EmptyState
                 icon="bookings"
                 title="No bookings yet"
-                description="You haven't made any bookings. Start by booking a facility."
-                action={<Link to="/bookings" className="mt-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-medium transition-all">Create Booking</Link>}
+                description="You haven't made any bookings."
               />
-            ) : (
-              recentBookings.map((b) => (
-                <div key={b.id} className="p-4 hover:bg-dark-border/20 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-white">{b.facilityName}</p>
-                      <p className="text-xs text-dark-text mt-0.5">{b.purpose}</p>
+            </div>
+          ) : (
+            <div className="divide-y divide-dark-border/30">
+              {recentBookings.map((b) => (
+                <div key={b.id} className="stagger-item animate-slide-up py-4 hover:bg-dark-border/10 transition-colors duration-200">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-base font-medium text-white truncate leading-tight">{b.facilityName}</p>
+                      <p className="text-sm text-dark-text mt-1 truncate leading-relaxed">{b.purpose}</p>
+                      <p className="text-sm text-dark-text/60 mt-2 leading-relaxed">
+                        {new Date(b.startTime).toLocaleDateString([], { month: 'short', day: 'numeric' })} • {new Date(b.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
                     </div>
-                    <StatusBadge status={b.status} />
+                    <div className="shrink-0">
+                      <StatusBadge status={b.status} />
+                    </div>
                   </div>
-                  <p className="text-xs text-dark-text mt-2">
-                    {new Date(b.startTime).toLocaleDateString()} • {new Date(b.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} – {new Date(b.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* Recent Tickets */}
-        <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b border-dark-border">
-            <h3 className="font-semibold text-white">Recent Tickets</h3>
-            <Link to="/tickets" className="text-sm text-primary hover:text-primary-light transition-colors">View all →</Link>
+        {/* Recent Tickets Card */}
+        <div className="card animate-slide-up overflow-hidden">
+          <div className="flex items-center justify-between pb-4 border-b border-dark-border mb-4">
+            <div>
+              <h3 className="text-lg font-semibold text-white leading-tight">Recent Tickets</h3>
+              <p className="text-sm text-dark-text mt-1 leading-relaxed">Latest maintenance requests</p>
+            </div>
+            <Link to="/tickets" className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-light transition-colors font-medium whitespace-nowrap">
+              View all
+              <span>→</span>
+            </Link>
           </div>
-          <div className="divide-y divide-dark-border/50">
-            {recentTickets.length === 0 ? (
-              <EmptyState 
+
+          {recentTickets.length === 0 ? (
+            <div className="py-8">
+              <EmptyState
                 icon="tickets"
                 title="No tickets yet"
-                description="You haven't submitted any maintenance tickets."
-                action={<Link to="/tickets" className="mt-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-medium transition-all">Report Issue</Link>}
+                description="No maintenance requests submitted."
               />
-            ) : (
-              recentTickets.map((t) => (
-                <div key={t.id} className="p-4 hover:bg-dark-border/20 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-white">{t.title}</p>
-                      <p className="text-xs text-dark-text mt-0.5">{t.facilityName}</p>
+            </div>
+          ) : (
+            <div className="divide-y divide-dark-border/30">
+              {recentTickets.map((t) => (
+                <div key={t.id} className="stagger-item animate-slide-up py-4 hover:bg-dark-border/10 transition-colors duration-200">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-base font-medium text-white truncate leading-tight">{t.title}</p>
+                      <p className="text-sm text-dark-text mt-1 truncate leading-relaxed">{t.facilityName}</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 shrink-0">
                       <StatusBadge status={t.priority} />
                       <StatusBadge status={t.status} />
                     </div>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
+

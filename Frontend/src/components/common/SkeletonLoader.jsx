@@ -1,6 +1,6 @@
 export default function SkeletonLoader({ className = '', variant = 'default' }) {
   const baseClass = 'animate-pulse bg-dark-border/50 rounded';
-  
+
   const variants = {
     default: 'h-4 w-full',
     text: 'h-4 w-3/4',
@@ -13,13 +13,13 @@ export default function SkeletonLoader({ className = '', variant = 'default' }) 
   };
 
   return (
-    <div className={`${baseClass} ${variants[variant] || variants.default} ${className}`} />
+    <div className={`p-4 m-2 ${baseClass} ${variants[variant] || variants.default} ${className}`} />
   );
 }
 
 export function CardSkeleton() {
   return (
-    <div className="bg-dark-card border border-dark-border rounded-xl p-5 space-y-4">
+    <div className="p-4 m-2 bg-dark-card border border-dark-border rounded-xl space-y-4">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <SkeletonLoader variant="circle" />
@@ -41,7 +41,7 @@ export function CardSkeleton() {
 
 export function StatCardSkeleton() {
   return (
-    <div className="bg-dark-card border border-dark-border rounded-xl p-5">
+    <div className="p-4 m-2 bg-dark-card border border-dark-border rounded-xl">
       <div className="flex items-center justify-between mb-3">
         <SkeletonLoader variant="circle" className="h-10 w-10" />
       </div>
@@ -53,10 +53,12 @@ export function StatCardSkeleton() {
 
 export function TableSkeleton({ rows = 5 }) {
   return (
-    <div className="space-y-3">
+    <div className="p-4 m-2 space-y-3">
       {Array.from({ length: rows }).map((_, i) => (
         <CardSkeleton key={i} />
       ))}
     </div>
   );
 }
+
+

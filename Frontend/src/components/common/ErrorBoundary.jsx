@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-dark flex items-center justify-center p-4">
+        <div className="min-h-screen bg-dark flex items-center justify-center p-4 m-2">
           <div className="text-center max-w-lg">
             <div className="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-danger/10 animate-pulse">
               <HiExclamationCircle className="text-danger" size={48} />
@@ -41,7 +41,7 @@ export default class ErrorBoundary extends Component {
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mt-8 text-left">
                 <summary className="cursor-pointer text-sm text-danger font-medium mb-2">Error Details (Development)</summary>
-                <pre className="bg-dark-card border border-dark-border rounded-lg p-4 text-xs text-dark-text-light overflow-auto max-h-64">
+                <pre className="bg-dark-card border border-dark-border rounded-lg p-4 m-2 text-xs text-dark-text-light overflow-auto max-h-64">
                   {this.state.error.toString()}
                   {this.state.errorInfo.componentStack}
                 </pre>
@@ -55,3 +55,4 @@ export default class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
